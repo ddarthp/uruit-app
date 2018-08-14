@@ -1,0 +1,26 @@
+@import "~bulma/sass/utilities/initial-variables";
+
+$asset-base-path: '/assets' !default;
+
+$page-background: #ffd54f;
+$primary:  #232f3f;
+$link: #d48109;
+$black: #000;
+
+$overlay-flat: rgba(0, 0, 0, 0.3);
+$overlay-init: rgba(0, 0, 0, 0.8);
+$overlay-end: rgba(0, 0, 0, 0.9);
+
+$family-primary: 'Roboto', sans-serif;
+
+$sqrt-2: 1.414213562;
+
+$navbar-height: 80px;
+
+// Edit board
+$toolbox-width: 400px;
+$toolbox-offset: 36px;
+
+//screen sizes 
+$mobile: 400px;
+$tablet: 1024px;

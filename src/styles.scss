@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import './utils';
+@import './variables';
+
+*, html, body {
+    color: $primary;
+    font-family: $family-primary;
+}
+body {
+    background-color: $page-background
+}
+
+button {
+    color: $primary
+}

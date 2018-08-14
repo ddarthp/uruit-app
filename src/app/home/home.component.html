@@ -1,0 +1,35 @@
+<section>
+  <div class="header">
+    <div class="logo">
+
+    </div>
+    <h2 class="title">Game of Drones</h2>
+    <div class="subtitle">
+        A basic Rock-Paper-Scissors game   
+    </div>
+  </div>
+
+<div class="container">
+  
+    <mat-card>
+        <mat-list role="list">
+            <mat-list-item (click)="startGame('single')" role="listitem">
+                <mat-icon svgIcon="account"></mat-icon> 
+                  <span>Single player</span>
+            </mat-list-item>
+            <mat-list-item (click)="startGame('local')" role="listitem">
+                <mat-icon svgIcon="account-multiple"></mat-icon> 
+              <span>Multiplayer local</span>
+            </mat-list-item>
+            <mat-list-item (click)="startGame('online')" role="listitem">
+                <mat-icon svgIcon="earth"></mat-icon> 
+              <span>Multiplayer online</span>
+            </mat-list-item>
+          </mat-list>
+    </mat-card>
+</div>
+
+
+
+</section>
+

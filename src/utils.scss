@@ -1,0 +1,37 @@
+@import "variables";
+
+@function asset($type, $file) {
+  @return url($asset-base-path + '/' + $type + '/' + $file);
+}
+
+@function img($file) {
+  @return asset('images', $file);
+}
+
+@function covered-background($file) {
+  @return linear-gradient($overlay-init, $overlay-end), img($file);
+}
+
+@mixin avatar($size, $border-width) {
+  $out-radius: $size / 2;
+  $out-apothem: $out-radius * $sqrt-2 / 2;
+  $in-apothem: $out-apothem - $border-width;
+  $in-radius: $in-apothem * 2 / $sqrt-2;
+
+  position: relative;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  background: black;
+  box-sizing: border-box;
+  height: $size;
+  width: $size;
+
+  img {
+    position: absolute;
+    top: $out-radius - $in-radius;
+    left: $out-radius - $in-radius;
+    height: $in-radius * 2;
+    width: $in-radius * 2;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background: #fff;
+  }
+}
