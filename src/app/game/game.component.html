@@ -1,0 +1,84 @@
+<section>
+  <div class="header">
+    <div class="logo">
+
+    </div>
+    <h2 class="title">Game of Drones</h2>
+    <div class="subtitle">
+        A basic Rock-Paper-Scissors game   
+    </div>
+  </div>
+
+<div class="container">
+    
+    <mat-card  *ngIf="!playerTwoForm && !gameCanvas">
+        <!-- <div *ngIf="Game"> {{Game.typeGame}} player game</div> -->
+        <h3 class="title">Player One Info</h3>
+        <form class="player-form">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="playerOne.name" name="playerOne.name" matInput placeholder="Player's name" value="">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+              <input [(ngModel)]="playerOne.email" name="playerOne.email" matInput type="email" placeholder="Player's email" value="">
+          </mat-form-field>
+        </form> 
+        <div>
+            <button mat-flat-button (click)="back()" color="link"><mat-icon svgIcon="arrow-left"></mat-icon> Back </button>
+            <button *ngIf="Game && ( Game.typeGame !='local' )" mat-flat-button (click)="begins()" color="link">Begins <mat-icon svgIcon="arrow-right"></mat-icon></button>
+            <button *ngIf="Game && (Game.typeGame =='local' )" mat-flat-button (click)="continue()" color="link">Continue <mat-icon svgIcon="arrow-right"></mat-icon></button>
+        </div>
+        <h3 class="title">{{gameTitle}}</h3> 
+    </mat-card>
+    <mat-card *ngIf="playerTwoForm && !gameCanvas">
+        <!-- <div *ngIf="Game"> {{Game.typeGame}} player game</div> -->
+        <h3 class="title">Player Two Info</h3>
+        <form class="player-form">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="playerTwo.name" name="playerTwo.name" matInput placeholder="Player's name" value="">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+              <input [(ngModel)]="playerTwo.email" name="playerTwo.email" matInput type="email" placeholder="Player's email" value="">
+          </mat-form-field>
+        </form> 
+        <div>
+            <button mat-flat-button (click)="back()" color="link"><mat-icon svgIcon="arrow-left"></mat-icon> Back </button>
+            <button mat-flat-button (click)="begins()" color="link">begins <mat-icon svgIcon="arrow-right"></mat-icon></button>
+        </div>
+        <h3 class="title">{{gameTitle}}</h3> 
+    </mat-card>
+    <div class="game circle-container" *ngIf="(gameCanvas)" >
+      <ng-template ngFor let-weapon [ngForOf]="weapons">
+        <game-weapon 
+          [weapon]="weapon"
+          [class]="weapon.position" 
+          (weaponSelected)="setMovement($event)">
+        </game-weapon>
+      </ng-template>
+      <div *ngIf="(gameCanvas)" class="movements">
+          <div>
+              <p>your moves:</p>
+              <ul>
+                <li *ngFor="let move of playerMoves">
+                  <img [src]="'../../assets/images/' + move.weapon +'.png'"/>
+                  <span class="mark lose"></span>
+                </li>
+              </ul>
+          </div>
+          <div>
+              <p>opponent moves:</p>
+              <ul>
+                <li *ngFor="let move of opponentMoves">
+                    <img [src]="'../../assets/images/' + move.weapon +'.png'"/>
+                    <span class="mark win"></span>
+                </li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    
+</div>
+
+
+
+</section>
+

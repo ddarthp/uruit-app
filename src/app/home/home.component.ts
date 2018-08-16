@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/apiService';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  
-
-  constructor() { }
-
+  constructor(
+    public service:ApiService,
+    public route: Router
+  ) { }
   ngOnInit() {
+    
   }
 
   startGame(type:string){
+ 
     switch (type){
       case 'single':
         this.startSingle();
@@ -28,13 +33,22 @@ export class HomeComponent implements OnInit {
   }
 
   startSingle() {
-    console.log('Single')
-  }
+    this.service.createGame('single', (response) => {
+      console.log(response);
+      this.route.navigate(['game', response._id])
+    })
+  } 
   startLocal() {
-    console.log('Local')
+    this.service.createGame('local', (response) => {
+      console.log(response);
+      this.route.navigate(['game', response._id])
+    })
   }
   startOnline() {
-    console.log('Online')
+    this.service.createGame('online', (response) => {
+      console.log(response);
+      this.route.navigate(['game', response._id])
+    })
   }
 
 }

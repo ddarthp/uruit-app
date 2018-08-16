@@ -1,5 +1,6 @@
 @import "./../../utils.scss";
 @import "./../../variables.scss";
+@import "~bulma/sass/utilities/_all";
 section {
     width: 100%;
     max-width: 1100px;
@@ -29,9 +30,13 @@ section {
         }
     }
     .mat-card {
-        background-color: rgba(255,255,255, 0.5);
+        background-color: rgba(255,255,255, 1);
         width: 100vw;
         height: 70vw;
+        @include desktop {
+            width: 30vw;
+            height: 35vw;
+        }
         .mat-list {
             height: 100%;
             .mat-list-item {
@@ -39,10 +44,11 @@ section {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: rgba(182, 126, 54, 0.35);
+                background-color: #ff4081;
+                color: #fff;
                 margin-bottom: 1px;
                 &:hover {
-                    background-color: rgba(255,255,255, 0.5);
+                    background-color: #ff408199
                 }
                 span {
                     margin-left: 20px

@@ -1,13 +1,18 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { GameComponent } from './game/game.component';
+
 
 const appRoutes: Routes = [
 	{
-		path: '', component: HomeComponent,
+		path: '', pathMatch:'full', component: HomeComponent,
 	},
 	{
-		path: '**', component: HomeComponent,
+		path: 'game', pathMatch:'full', redirectTo: '',
+	},
+	{
+		path: 'game/:id', component: GameComponent,
 	}
 ];
 export const appRoutingProviders: any[] = [
