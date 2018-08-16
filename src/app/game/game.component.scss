@@ -102,13 +102,22 @@ width: 100%;
     img { display: block; width: 100%; }
 }
 .movements{
-    position: absolute;
-    top: 65vw;
     text-align: center;
-    width: 100%;
+    .scores {
+        width: 50%;
+        height: 100px;
+        float: left;
+    }
+    .winner{
+        width: 100%;
+        height: auto;
+        float: none;
+    }
     ul{
         list-style: none;
         padding: 0;
+        width: 96px;
+        margin: 0 auto;
         li{
             list-style: none;
             float: left;
@@ -118,6 +127,7 @@ width: 100%;
             img {
                 width: 100%;
                 height: auto;
+                border-radius: 50%
             }
             .mark {
                 width: 10px;

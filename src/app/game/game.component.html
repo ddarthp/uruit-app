@@ -29,7 +29,7 @@
         </div>
         <h3 class="title">{{gameTitle}}</h3> 
     </mat-card>
-    <mat-card *ngIf="playerTwoForm && !gameCanvas">
+    <mat-card *ngIf="playerTwoForm && !gameCanvas && !gameFinale">
         <!-- <div *ngIf="Game"> {{Game.typeGame}} player game</div> -->
         <h3 class="title">Player Two Info</h3>
         <form class="player-form">
@@ -46,6 +46,32 @@
         </div>
         <h3 class="title">{{gameTitle}}</h3> 
     </mat-card>
+    <mat-card *ngIf="gameFinale" class="movements">
+        <h3 class="title">Battle finished</h3>
+        <div class="scores" *ngIf="playerMoves">
+            <p>your moves:</p>
+            <ul>
+              <li *ngFor="let move of playerMoves">
+                <img [src]="'../../assets/images/' + move.weapon +'.png'"/>
+                <span class="mark"></span>
+              </li>
+            </ul>
+        </div>
+        <div class="scores" *ngIf="opponentMoves" >
+            <p>opponent moves:</p>
+            <ul>
+              <li *ngFor="let move of opponentMoves">
+                  <img [src]="'../../assets/images/' + move.weapon +'.png'"/>
+                  <span class="mark "></span>
+              </li>
+            </ul>
+        </div>
+        <div class="winner">
+          <h3>{{winnerName}}</h3>
+          <p *ngIf="(winnerName != 'No winner')">is the new Emperor!</p>
+        </div>
+        <button class="back" mat-flat-button (click)="back()" color="accent"> New Battle! </button>
+    </mat-card>
     <div class="game circle-container" *ngIf="(gameCanvas)" >
       <ng-template ngFor let-weapon [ngForOf]="weapons">
         <game-weapon 
@@ -54,26 +80,8 @@
           (weaponSelected)="setMovement($event)">
         </game-weapon>
       </ng-template>
-      <div *ngIf="(gameCanvas)" class="movements">
-          <div>
-              <p>your moves:</p>
-              <ul>
-                <li *ngFor="let move of playerMoves">
-                  <img [src]="'../../assets/images/' + move.weapon +'.png'"/>
-                  <span class="mark lose"></span>
-                </li>
-              </ul>
-          </div>
-          <div>
-              <p>opponent moves:</p>
-              <ul>
-                <li *ngFor="let move of opponentMoves">
-                    <img [src]="'../../assets/images/' + move.weapon +'.png'"/>
-                    <span class="mark win"></span>
-                </li>
-              </ul>
-          </div>
-      </div>
+      
+      
     </div>
     
 </div>

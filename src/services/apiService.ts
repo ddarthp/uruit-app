@@ -45,6 +45,12 @@ export class ApiService {
       callback(data.json());
     });
   }
+  getPlayer(playerId, callback) {
+    const endpoint =  `${this.urlApi}/player/${playerId}`;
+    this.http.get(endpoint).subscribe(data => {
+      callback(data.json());
+    });
+  }
 
   
 

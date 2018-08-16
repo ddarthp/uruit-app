@@ -10,9 +10,12 @@ import { Observable } from '../../../node_modules/rxjs';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
+  interval:any;
   gameInit: boolean;
   gameTitle:string;
-  gameCanvas: Boolean = false;
+  gameCanvas: boolean = false;
+  gameFinale: boolean = false;
+  winnerName:string; 
   playerId: any;
   playerMoves = [];
   opponentMoves = [];
@@ -66,9 +69,14 @@ export class GameComponent implements OnInit {
             
 
           this.setTitle();
+          if(this.Game.winnerGame) {
+            this.gameFinale = true;
+            this.gameCanvas = false;
+            this.setWinner();
+          }
       })
     })
-    setInterval( () => {
+    this.interval = setInterval( () => {
       this.pingGame();
       console.log(this.Game);
       console.log(this.youAre);
@@ -109,10 +117,25 @@ export class GameComponent implements OnInit {
           if (this.playerMoves.length == 3) {
             this.getOpponentMoves();
           }
+          if(this.Game.winnerGame) {
+            this.gameFinale = true;
+            this.gameCanvas = false;
+            this.setWinner();
+            clearInterval(this.interval);  
+          }
       })
     })
   }
-
+  setWinner() {
+    let playerId = this.Game.winnerGame;
+    if (playerId == '000000000000000000000000'){
+      this.winnerName == 'No winner';
+    } else {
+      this.service.getPlayer(playerId, (player) => {
+        this.winnerName = player.name;
+      })
+    }
+  }
   begins() {
     if (this.Game.typeGame === 'single'  || this.Game.typeGame === 'online') {
       if (!this.Game.playerOne) {
